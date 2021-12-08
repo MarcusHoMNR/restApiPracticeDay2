@@ -13,6 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
 public class EmployeeServiceTest {
@@ -50,6 +51,7 @@ public class EmployeeServiceTest {
         Employee actual = employeeService.edit(employee.getId(), updatedEmployee);
 
         //then
+        verify(mockEmployeeRepository).save(employee.getId(), employee);
         assertEquals(employee, actual);
     }
 
